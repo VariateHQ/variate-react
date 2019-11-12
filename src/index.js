@@ -49,7 +49,6 @@ export const VariateComponent = ({
     <Consumer>
       {props => {
         const bucket = props.variate.getMainTrafficBucket();
-        debugger;
         return children({ ...props, componentName, content });    
       }}
     </Consumer>
