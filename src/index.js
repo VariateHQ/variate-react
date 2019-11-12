@@ -3,10 +3,6 @@ import Variate from '@variate/engine';
 
 import { MUST_HAVE_CHILDREN } from './lang.js';
 
-const variate = new Variate({
-  debug: true
-});
-
 const { Provider, Consumer } = createContext({
   env: null,
   debug: false
@@ -19,12 +15,22 @@ export const VariateProvider = ({
   reporter = false,
   tracking = false
 }) => {
+
+  const variate = new Variate({
+    debug,
+    tracking,
+    reporter,
+    config,
+    reporter
+  }); 
+
   return (
     <Provider value={{
       config,
       debug,
       reporter,
-      tracking
+      tracking,
+      variate
     }}>
       {children}
     </Provider>
@@ -42,6 +48,8 @@ export const VariateComponent = ({
   return (
     <Consumer>
       {props => {
+        const bucket = props.variate.getMainTrafficBucket();
+        debugger;
         return children({ ...props, componentName, content });    
       }}
     </Consumer>
