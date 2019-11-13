@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { VariateComponent } from '../../src';
 
 const HeroContainer = styled.section`
-  background: url(${props => props.backgroundImg}) no-repeat;
+  background: url(${props => props.backgroundImage}) no-repeat;
+  backgroundSize: contain;
   height: 400px;
   background-size: cover;
 `;
@@ -13,11 +14,10 @@ const Hero = ({
   content
 }) => (
   <VariateComponent 
-    componentName="Hero" 
-    viewName="HomePage"
+    componentName="Hero"
     defaultContent={content}>
     {({ content }) => (
-      <HeroContainer backgroundImg={content.backgroundImg}>
+      <HeroContainer backgroundImage={content.backgroundImage}>
         <h1>{content.title}</h1>
       </HeroContainer>
     )}
@@ -27,7 +27,7 @@ const Hero = ({
 Hero.defaultProps = {
   content: {
     title: "No Experiment Is Running",
-    backgroundImg: 'https://www.filmindependent.org/wp-content/uploads/2016/02/hero-placeholder-768x293.png'
+    backgroundImage: 'https://www.filmindependent.org/wp-content/uploads/2016/02/hero-placeholder-768x293.png'
   }
 }
 

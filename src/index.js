@@ -13,6 +13,7 @@ export const VariateProvider = ({
   config = {},
   debug = false,
   reporter = false,
+  pageview = false,
   tracking = false
 }) => {
 
@@ -21,17 +22,12 @@ export const VariateProvider = ({
     tracking,
     reporter,
     config,
-    reporter
-  }); 
+    reporter,
+    pageview
+  });
 
   return (
-    <Provider value={{
-      config,
-      debug,
-      reporter,
-      tracking,
-      variate
-    }}>
+    <Provider value={{ variate }}>
       {children}
     </Provider>
   )
@@ -41,19 +37,27 @@ export const VariateComponent = ({
   children,
   componentName,
   defaultContent
-}) => {
+}) => (
+  <Consumer>
+    {({ variate }) => {
 
-  const content = defaultContent;
+      variate.initialize({
+        view: '/$',
+        targeting: {
+            country: 'Canada',
+            state: 'BC',
+        }
+      });
 
-  return (
-    <Consumer>
-      {props => {
-        const bucket = props.variate.getMainTrafficBucket();
-        return children({ ...props, componentName, content });    
-      }}
-    </Consumer>
-  )
-}
+      const variateComponent = variate.components[componentName] || {};
+      const attributes = variateComponent.attributes || {};
+      const content = { ...defaultContent, ...attributes };
+
+      return children({ componentName, content, variate });    
+    }}
+
+  </Consumer>
+)
 
 
 

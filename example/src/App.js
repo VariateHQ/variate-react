@@ -6,8 +6,6 @@ import { VariateProvider, VariateComponent } from '../../src';
 
 import Hero from './Hero';
 
-console.log(config);
-
 const App = () => (
   <VariateProvider 
     debug={true} 

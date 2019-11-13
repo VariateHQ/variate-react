@@ -44,7 +44,8 @@
                     "Hero": {
                         "id": 25,
                         "attributes": {
-                            "backgroundImage": "https://placeimg.com/1000/500/animals"
+                            "backgroundImage": "https://placeimg.com/1000/500/animals",
+                            "title": "Control"
                         }
                     }
                 }
@@ -59,7 +60,8 @@
                     "Hero": {
                         "id": 25,
                         "attributes": {
-                            "backgroundImage": "https://placeimg.com/1000/500/arch"
+                            "backgroundImage": "https://placeimg.com/1000/500/arch",
+                            "title": "Var A"
                         }
                     }
                 }
