@@ -4,7 +4,7 @@
         {
           "id": 16,
           "name": "Homepage - Hero Banner",
-          "status": "live",
+          "status": "draft",
           "targeting": {
             "views": {
                 "include": [
@@ -34,38 +34,52 @@
             }
         },
         "variations": [
-            {
-                "id": 22,
-                "traffic_allocation": {
-                    "max": 50,
-                    "min": 0
-                },
-                "components": {
-                    "Hero": {
-                        "id": 25,
-                        "attributes": {
-                            "backgroundImage": "https://placeimg.com/1000/500/animals",
-                            "title": "Control"
-                        }
-                    }
-                }
+          {
+            "id": 22,
+            "traffic_allocation": {
+              "max": 50,
+              "min": 0
             },
-            {
-                "id": 23,
-                "traffic_allocation": {
-                    "max": 100,
-                    "min": 51
-                },
-                "components": {
-                    "Hero": {
-                        "id": 25,
-                        "attributes": {
-                            "backgroundImage": "https://placeimg.com/1000/500/arch",
-                            "title": "Var A"
-                        }
-                    }
+            "components": {
+              "Hero": {
+                "id": 25,
+                "attributes": {
+                  "backgroundImage": "https://placeimg.com/1000/500/animals",
+                  "title": "Control"
                 }
+              },
+              "Nav": {
+                "id": 40,
+                "attributes": {
+                  "backgroundColor": "#fff",
+                  "title": "Control"
+                }
+              }
             }
+          },
+          {
+            "id": 23,
+            "traffic_allocation": {
+              "max": 100,
+              "min": 51
+            },
+            "components": {
+              "Hero": {
+                "id": 25,
+                "attributes": {
+                  "backgroundImage": "https://placeimg.com/1000/500/arch",
+                  "title": "Var A"
+                }
+              },
+              "Nav": {
+                "id": 40,
+                "attributes": {
+                  "backgroundColor": "#aec6cf",
+                  "title": "Var A"
+                }
+              }
+            }
+          }
         ]
     },
     {

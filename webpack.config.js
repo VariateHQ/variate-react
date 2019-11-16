@@ -7,7 +7,7 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 });
 
 module.exports = {
-  entry: path.join(__dirname, "example/src/index.js"),
+  entry: path.join(__dirname, "example/src"),
   module: {
     rules: [
       {
@@ -23,9 +23,13 @@ module.exports = {
   },
   plugins: [htmlWebpackPlugin],
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx"],
+    alias: {
+      '@variate/react': './'
+    }
   },
   devServer: {
-    port: 3001
-  }
+    port: 3001,
+    historyApiFallback: true,
+  },
 };
