@@ -1,12 +1,5 @@
 {
-<<<<<<< HEAD
-  "hooks": {
-    "commit-msg": "commitlint -e $GIT_PARAMS"
-  }
-}
-=======
     "hooks": {
         "commit-msg": "commitlint -e $GIT_PARAMS"
     }
 }
->>>>>>> 97a4f8e370c3e9efde84c159b348dfbf2b53ebaf

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { VariateComponent } from './../../../src';
+import { useVariate } from './../../../src/hooks';
 
 const HeroContainer = styled.section`
   background: url(${props => props.backgroundImage}) no-repeat;
@@ -30,10 +31,12 @@ const ConversionLink = styled.a`
 `;
 
 const Hero = ({
-  content
-}) => (
-  <VariateComponent componentName="Hero" defaultContent={content}>
-  {({ content, variate }) => (
+  defaultContent
+}) => {
+
+  const { content, variate } = useVariate('Hero', defaultContent);
+
+  return (
     <HeroContainer backgroundImage={content.backgroundImage}>
       <HeroTitle>{content.title}</HeroTitle>
       <ConversionLink onClick={e => {
@@ -41,12 +44,27 @@ const Hero = ({
         variate.track('Conversion');
       }}>Convert</ConversionLink>
     </HeroContainer>
-  )}
-  </VariateComponent>
-);
+  )
+}
+
+// const Hero = ({
+//   content
+// }) => (
+//   <VariateComponent componentName="Hero" defaultContent={content}>
+//   {({ content, variate }) => (
+//     <HeroContainer backgroundImage={content.backgroundImage}>
+//       <HeroTitle>{content.title}</HeroTitle>
+//       <ConversionLink onClick={e => {
+//         e.preventDefault();
+//         variate.track('Conversion');
+//       }}>Convert</ConversionLink>
+//     </HeroContainer>
+//   )}
+//   </VariateComponent>
+// );
 
 Hero.defaultProps = {
-  content: {
+  defaultContent: {
     title: "No Experiment Is Running",
     backgroundImage: 'https://www.filmindependent.org/wp-content/uploads/2016/02/hero-placeholder-768x293.png'
   }
