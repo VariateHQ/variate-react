@@ -6,7 +6,7 @@ import { useVariate } from './../../../build';
 
 const HeroContainer = styled.section`
   background: url(${props => props.backgroundImage}) no-repeat;
-  backgroundSize: contain;
+  background-size: contain;
   height: 400px;
   background-size: cover;
 `;

@@ -1,16 +1,6 @@
 import React, { createContext, Component } from 'react';
 import Variate from '@variate/engine';
 
-type ProviderStateType = {
-  variate: any
-}
-
-type ProviderPropsType = {
-  debug: boolean
-  children: any,
-  onViewChange: Function
-}
-
 export const VariateContext = createContext({ 
   variate: null 
 });
@@ -43,12 +33,6 @@ export class VariateProvider extends Component<ProviderPropsType, ProviderStateT
   }
 }
 
-type VariateComponentProps = {
-  children: any,
-  componentName: string,
-  defaultContent: object
-}
-
 export const VariateComponent = ({
   children,
   componentName,
@@ -65,11 +49,12 @@ export const VariateComponent = ({
   </VariateContext.Consumer>
 );
 
-export const useVariate = (componentName: string, defaultContent: object) => {
+export const useVariate = (componentName: string, defaultContent: object): UseVariateReturnType => {
+  if (!componentName || !defaultContent) throw new Error('useVariate must recieve a componentName and defaultContent');
   const { variate } = React.useContext(VariateContext);
   const components = variate.components || {};
   const variateComponent = components[componentName] || {};
   const attributes = variateComponent.attributes || {};
   const content = { ...defaultContent, ...attributes };
-  return { content, variate };
+  return { content, variate, componentName };
 }
