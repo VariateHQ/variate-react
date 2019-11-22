@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { VariateComponent } from './../../../src';
+import { VariateComponent } from './../../../build';
 import { Link } from 'react-router-dom';
 
 const NavContainer = styled.nav`

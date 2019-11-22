@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { VariateComponent } from './../../../src';
-import { useVariate } from './../../../src/hooks';
+import { VariateComponent } from './../../../build';
+import { useVariate } from './../../../build';
 
 const HeroContainer = styled.section`
   background: url(${props => props.backgroundImage}) no-repeat;

@@ -7,7 +7,9 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 });
 
 module.exports = {
-  entry: path.join(__dirname, "example/src"),
+  entry: {
+    example: path.join(__dirname, 'example/src')
+  },
   module: {
     rules: [
       {
