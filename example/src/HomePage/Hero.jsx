@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import { VariateComponent } from './../../../build';
 import { useVariate } from './../../../build';
 
-const HeroContainer = styled.section`
+const Container = styled.section`
   background: url(${props => props.backgroundImage}) no-repeat;
   background-size: contain;
   height: 400px;
   background-size: cover;
 `;
 
-const HeroTitle = styled.h1`
+const Title = styled.h1`
   position: absolute;
   top: 100px;
   left: 100px;
@@ -19,7 +19,7 @@ const HeroTitle = styled.h1`
   color: #fff; 
 `;
 
-const ConversionLink = styled.a`
+const Link = styled.a`
   position: absolute;
   top: 200px;
   left: 100px;
@@ -37,13 +37,13 @@ const Hero = ({
   const { content, variate } = useVariate('Hero', defaultContent);
 
   return (
-    <HeroContainer backgroundImage={content.backgroundImage}>
-      <HeroTitle>{content.title}</HeroTitle>
-      <ConversionLink onClick={e => {
+    <Container backgroundImage={content.backgroundImage}>
+      <Title>{content.title}</Title>
+      <Link onClick={e => {
         e.preventDefault();
         variate.track('Conversion');
-      }}>Convert</ConversionLink>
-    </HeroContainer>
+      }}>Convert</Link>
+    </Container>
   )
 }
 
@@ -52,13 +52,13 @@ const Hero = ({
 // }) => (
 //   <VariateComponent componentName="Hero" defaultContent={content}>
 //   {({ content, variate }) => (
-//     <HeroContainer backgroundImage={content.backgroundImage}>
-//       <HeroTitle>{content.title}</HeroTitle>
-//       <ConversionLink onClick={e => {
+//     <Container backgroundImage={content.backgroundImage}>
+//       <Title>{content.title}</Title>
+//       <Link onClick={e => {
 //         e.preventDefault();
 //         variate.track('Conversion');
-//       }}>Convert</ConversionLink>
-//     </HeroContainer>
+//       }}>Convert</Link>
+//     </Container>
 //   )}
 //   </VariateComponent>
 // );

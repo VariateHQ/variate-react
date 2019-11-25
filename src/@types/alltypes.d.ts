@@ -5,14 +5,16 @@ type ProviderStateType = {
 }
 
 type ProviderPropsType = {
-  debug: boolean
-  children: any,
-  onViewChange: Function
+  config: object
+  debug?: boolean
+  tracking?: boolean
+  children: any
+  onViewChange?: Function
 }
 
 type VariateComponentProps = {
-  children: any,
-  componentName: string,
+  children: any
+  componentName: string
   defaultContent: object
 }
 

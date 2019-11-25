@@ -28,9 +28,9 @@ const App = () => (
     tracking={true}
     reporter={event => console.log('TRACKED >>>', event)}
     config={config}
-    onViewChange={changed => {
-      changed(updateVariate(window.location.pathName));
-      history.listen(location => changed(updateVariate(location.pathName)));
+    onViewChange={activate => {
+      activate(updateVariate(window.location.pathName));
+      history.listen(location => activate(updateVariate(location.pathName)));
     }}>
       <Container>
         <Router history={history}>
