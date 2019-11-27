@@ -8,7 +8,6 @@ jest.mock('@variate/engine');
 
 import { VariateProvider, VariateComponent, useVariate } from './index';
 import Variate from '@variate/engine';
-import { JSXElement } from '@babel/types';
 
 describe('VariateContext', () => {
 
