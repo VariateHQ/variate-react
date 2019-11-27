@@ -75,5 +75,14 @@
     "testMatch": [
       "**/*.test.(ts|tsx|js)"
     ]
-  }
+  },
+  "keywords": [
+    "ab-testing",
+    "variate"
+  ],
+  "author": "Thomas Davis <tomjdavis27@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/variateapp/variate-vue/issues"
+  },
+  "homepage": "https://github.com/variateapp/variate-vue#README.md"
 }
