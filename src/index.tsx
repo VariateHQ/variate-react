@@ -27,7 +27,7 @@ export class VariateProvider extends Component<ProviderPropsType, ProviderStateT
     const { children } = this.props;
     return (
       <VariateContext.Provider value={{ variate }}>
-        { children }
+        { typeof children === 'function' ? children({ variate }) : children }
       </VariateContext.Provider>
     );
   }
