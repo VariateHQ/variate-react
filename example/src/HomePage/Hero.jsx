@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { VariateComponent } from './../../../build';
-import { useVariate } from './../../../build';
+import { useVariate } from '@variate/react';
 
 const Container = styled.section`
   background: url(${props => props.backgroundImage}) no-repeat;
@@ -34,11 +33,11 @@ const Hero = ({
   defaultContent
 }) => {
 
-  const { content, variate } = useVariate('Hero', defaultContent);
+  const { content, variate } = useVariate('HomeHero', defaultContent);
 
   return (
     <Container backgroundImage={content.backgroundImage}>
-      <Title>{content.title}</Title>
+      <Title>{content.headline}</Title>
       <Link onClick={e => {
         e.preventDefault();
         variate.track('Conversion');
@@ -47,25 +46,9 @@ const Hero = ({
   )
 }
 
-// const Hero = ({
-//   content
-// }) => (
-//   <VariateComponent componentName="Hero" defaultContent={content}>
-//   {({ content, variate }) => (
-//     <Container backgroundImage={content.backgroundImage}>
-//       <Title>{content.title}</Title>
-//       <Link onClick={e => {
-//         e.preventDefault();
-//         variate.track('Conversion');
-//       }}>Convert</Link>
-//     </Container>
-//   )}
-//   </VariateComponent>
-// );
-
 Hero.defaultProps = {
   defaultContent: {
-    title: "No Experiment Is Running",
+    headline: "No Experiment Is Running",
     backgroundImage: 'https://www.filmindependent.org/wp-content/uploads/2016/02/hero-placeholder-768x293.png'
   }
 }

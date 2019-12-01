@@ -1,0 +1,52 @@
+{
+  "live": {
+      "experiments": [
+          {
+              "id": 1,
+              "name": "Homepage - Hero Content",
+              "status": "live",
+              "targeting": {
+                  "views": {
+                      "include": [
+                          "/$"
+                      ],
+                      "exclude": []
+                  },
+                  "audiences": {}
+              },
+              "variations": [
+                  {
+                      "id": 1,
+                      "traffic_allocation": {
+                          "max": 50,
+                          "min": 0
+                      },
+                      "components": {
+                          "HomeHero": {
+                              "id": 1,
+                              "attributes": {
+                                  "headline": "The A/B testing tool for the modern web"
+                              }
+                          }
+                      }
+                  },
+                  {
+                      "id": 2,
+                      "traffic_allocation": {
+                          "max": 100,
+                          "min": 51
+                      },
+                      "components": {
+                          "HomeHero": {
+                              "id": 1,
+                              "attributes": {
+                                  "headline": "The A/B testing tool that marketers and developers can agree on"
+                              }
+                          }
+                      }
+                  }
+              ]
+          }
+      ]
+  }
+}

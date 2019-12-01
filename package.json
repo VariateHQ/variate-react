@@ -6,7 +6,7 @@
   "main": "./dist/variate-react.min.js",
   "scripts": {
     "test": "jest",
-    "start": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --mode development --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "prepublishOnly": "yarn eslint ./src && yarn run test && yarn run build",
     "release": "standard-version"

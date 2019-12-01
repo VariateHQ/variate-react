@@ -15,11 +15,27 @@ type ProviderPropsType = {
 type VariateComponentProps = {
   children: any
   componentName: string
-  defaultContent: object
+  defaultContent?: object
 }
 
-type UseVariateReturnType = {
+type ExperimentType = {
+  attributes: object,
+  bucket: number,
+  experiment: number,
+  variation: number
+}
+
+interface ComponentReturnInterface {
   content: object,
   variate: object 
-  componentName: string
+  componentName: string,
+  experiments: Array<ExperimentType>
+}
+
+type StylesType = {
+  brand: string,
+  error: string, 
+  warning: string, 
+  type: string, 
+  message: string
 }

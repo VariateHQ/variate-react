@@ -6,28 +6,30 @@ import styled from 'styled-components';
 import { AboutPage } from './AboutPage';
 import { HomePage } from './HomePage';
 import { Nav } from './Nav';
-import { VariateProvider } from './../../build';
+import { VariateProvider } from '@variate/react';
 
-import config from './config.json';
-
-const Container = styled.section``;
+import variateConfig from './variate.json';
 
 const history = createBrowserHistory();
 
+const Container = styled.section`
+  
+`;
+
 const updateVariate = (location) => ({
   view: location,
-  targeting: {
-    country: 'Canada',
-    state: 'BC',
-  }
-})
+  // targeting: {
+  //   country: 'Canada',
+  //   state: 'BC',
+  // }
+});
 
 const App = () => (
   <VariateProvider 
     debug={true} 
     tracking={true}
-    reporter={event => console.log('TRACKED >>>', event)}
-    config={config}
+    reporter={event => true}
+    config={variateConfig}
     onViewChange={activate => {
       activate(updateVariate(window.location.pathName));
       history.listen(location => activate(updateVariate(location.pathName)));
