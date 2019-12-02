@@ -1,14 +1,15 @@
 {
   "name": "@variate/react",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Variate React Plugin",
   "license": "MIT",
   "main": "./dist/variate-react.min.js",
   "scripts": {
     "test": "jest",
+    "lint": "eslint ./src --ext .ts,.tsx,.jsx,.js",
     "start": "webpack-dev-server --mode development --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "prepublishOnly": "yarn eslint ./src && yarn run test && yarn run build",
+    "prepublishOnly": "yarn run lint && yarn run test && yarn run build",
     "release": "standard-version"
   },
   "files": [
