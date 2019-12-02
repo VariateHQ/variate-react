@@ -1,0 +1,1 @@
+export const INVALID_COMPONENT_NAME: string = 'This variate componentName prop is either missing or invalid';

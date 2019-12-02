@@ -1,5 +1,7 @@
 import React, { createContext, Component } from 'react';
 import Variate from '@variate/engine';
+import { logVariateComponent } from './utils';
+import { INVALID_COMPONENT_NAME } from './lang/warn';
 
 export const VariateContext = createContext({ 
   variate: null 
@@ -36,25 +38,35 @@ export class VariateProvider extends Component<ProviderPropsType, ProviderStateT
 export const VariateComponent = ({
   children,
   componentName,
-  defaultContent = {},
+  defaultContent
 }: VariateComponentProps) => (
   <VariateContext.Consumer>
     {({ variate }) => {
+      typeof componentName !== 'string' && console.warn(INVALID_COMPONENT_NAME);
       const components = variate.components || {};
       const variateComponent = components[componentName] || {};
+      const experiments = variateComponent.experiments || {}; 
       const attributes = variateComponent.attributes || {};
       const content = { ...defaultContent, ...attributes };
-      return children({ componentName, content, variate });
+      variate && variate.__options && variate._options.debug && logVariateComponent(experiments, componentName);
+      const props: ComponentReturnInterface = { componentName, content, variate, experiments };
+      return children(props);
     }}
   </VariateContext.Consumer>
 );
 
-export const useVariate = (componentName: string, defaultContent: object): UseVariateReturnType => {
-  if (!componentName || !defaultContent) throw new Error('useVariate must recieve a componentName and defaultContent');
+VariateComponent.defaultProps = {
+  defaultContent: {}
+}
+
+export const useVariate = (componentName: string, defaultContent: object = {}): ComponentReturnInterface => {
   const { variate } = React.useContext(VariateContext);
+  typeof componentName !== 'string' && console.warn(INVALID_COMPONENT_NAME);
   const components = variate.components || {};
   const variateComponent = components[componentName] || {};
+  const experiments = variateComponent.experiments || {}; 
   const attributes = variateComponent.attributes || {};
   const content = { ...defaultContent, ...attributes };
-  return { content, variate, componentName };
-}
+  variate && variate.__options && variate._options.debug && logVariateComponent(experiments, componentName);
+  return { content, variate, componentName, experiments };
+};

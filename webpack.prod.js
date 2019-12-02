@@ -3,8 +3,8 @@ module.exports = {
   mode: 'production',
   entry: './src/',
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'index.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'variate-react.min.js',
     libraryTarget: 'commonjs2'
   },
   module: {
