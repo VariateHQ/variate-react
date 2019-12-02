@@ -1,6 +1,6 @@
 export const name: string = 'Variate React';
 
-export const styles: object = {
+export const styles: StylesType = {
   brand: "background: rgba(143, 127, 224, 1); color: white; font-weight: 500; border-radius: 3px 0 0 3px; padding: 1px 2px;",
   error: "background: #e17055; color: white; font-weight: 500; border-radius: 3px 0 0 3px; padding: 1px 2px;",
   warning: "background: #fdcb6e; color: white; font-weight: 500; border-radius: 3px 0 0 3px; padding: 1px 2px;",

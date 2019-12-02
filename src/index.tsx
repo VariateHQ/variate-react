@@ -1,6 +1,7 @@
 import React, { createContext, Component } from 'react';
 import Variate from '@variate/engine';
 import { logVariateComponent } from './utils';
+import { INVALID_COMPONENT_NAME } from './lang/warn';
 
 export const VariateContext = createContext({ 
   variate: null 
@@ -41,12 +42,13 @@ export const VariateComponent = ({
 }: VariateComponentProps) => (
   <VariateContext.Consumer>
     {({ variate }) => {
+      typeof componentName !== 'string' && console.warn(INVALID_COMPONENT_NAME);
       const components = variate.components || {};
       const variateComponent = components[componentName] || {};
       const experiments = variateComponent.experiments || {}; 
       const attributes = variateComponent.attributes || {};
       const content = { ...defaultContent, ...attributes };
-      variate && variate._options.debug && logVariateComponent(experiments, componentName);
+      variate && variate.__options && variate._options.debug && logVariateComponent(experiments, componentName);
       const props: ComponentReturnInterface = { componentName, content, variate, experiments };
       return children(props);
     }}
@@ -59,11 +61,12 @@ VariateComponent.defaultProps = {
 
 export const useVariate = (componentName: string, defaultContent: object = {}): ComponentReturnInterface => {
   const { variate } = React.useContext(VariateContext);
+  typeof componentName !== 'string' && console.warn(INVALID_COMPONENT_NAME);
   const components = variate.components || {};
   const variateComponent = components[componentName] || {};
   const experiments = variateComponent.experiments || {}; 
   const attributes = variateComponent.attributes || {};
   const content = { ...defaultContent, ...attributes };
-  variate && variate._options.debug && logVariateComponent(experiments, componentName);
+  variate && variate.__options && variate._options.debug && logVariateComponent(experiments, componentName);
   return { content, variate, componentName, experiments };
 };
