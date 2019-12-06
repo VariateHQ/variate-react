@@ -2,7 +2,8 @@
   "name": "@variate/react",
   "version": "1.1.2",
   "description": "Variate React Plugin",
-  "license": "MIT",
+  "license": "BSL 1.1",
+  "author": "Thomas Davis <tomjdavis27@gmail.com>",
   "main": "./dist/variate-react.min.js",
   "scripts": {
     "test": "jest",
@@ -89,7 +90,6 @@
     "ab-testing",
     "variate"
   ],
-  "author": "Thomas Davis <tomjdavis27@gmail.com>",
   "bugs": {
     "url": "https://github.com/variateapp/variate-vue/issues"
   },
