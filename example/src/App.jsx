@@ -24,6 +24,8 @@ const updateVariate = (location) => ({
   // }
 });
 
+console.log(variateConfig);
+
 const App = () => (
   <VariateProvider 
     debug={true} 
