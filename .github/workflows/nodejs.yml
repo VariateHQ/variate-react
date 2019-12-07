@@ -3,7 +3,7 @@ name: Node CI
 on:
   push:
     branches:
-      - tag
+      - master
 
 jobs:
   build:
@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
         
     steps:
+      - name: Bump version, npm install, npm test, npm publish
+      - uses: phips28/gh-action-bump-version@v5.0.16
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: '10.x'
           registry-url: 'https://registry.npmjs.org'
       - run: npm install
-      - run: npm lint
-      - run: npm test 
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
