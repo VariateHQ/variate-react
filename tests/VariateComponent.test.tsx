@@ -56,7 +56,7 @@ describe('VariateComponent', () => {
     );
     expect(mockRenderProps.mock.calls[0][0]).toMatchObject({
       componentName: 'testingComponent',
-      content: { title: 'testing' }
+      variables: { title: 'testing' }
     });
   });
 
@@ -85,7 +85,7 @@ describe('VariateComponent', () => {
     );
     expect(mockRenderProps.mock.calls[0][0]).toMatchObject({
       componentName: 'testingComponent',
-      content: { 
+      variables: { 
         title: 'experiment testing',
         description: 'experiment testing',
         somethingElse: 'testing'

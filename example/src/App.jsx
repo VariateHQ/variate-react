@@ -16,16 +16,6 @@ const Container = styled.section`
   
 `;
 
-const updateVariate = (location) => ({
-  view: location,
-  // targeting: {
-  //   country: 'Canada',
-  //   state: 'BC',
-  // }
-});
-
-console.log(variateConfig);
-
 const App = () => (
   <VariateProvider 
     debug={true} 
@@ -33,13 +23,15 @@ const App = () => (
     reporter={event => true}
     config={variateConfig}
     onViewChange={activate => {
-      activate(updateVariate(window.location.pathName));
-      history.listen(location => activate(updateVariate(location.pathName)));
+      activate({ view: window.location.pathName });
+      history.listen(location => activate({ 
+        view: location.pathName
+      }));
     }}>
       <Container>
         <Router history={history}>
           <Nav />
-          <Route exact path='/' render={HomePage} />
+          <Route exact path='/' render={() => <HomePage/>} />
           <Route exact path='/about' render={AboutPage} />
         </Router>
       </Container>

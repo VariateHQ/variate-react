@@ -39,6 +39,7 @@ module.exports = {
     'no-restricted-syntax': 0,
     'react/jsx-closing-tag-location': 0,
     'arrow-parens': 0,
+    "indent": ["error", 2],
     'react/prefer-stateless-function': 0,
     'react/require-default-props': 0,
     'jsx-a11y/img-redundant-alt': 0,

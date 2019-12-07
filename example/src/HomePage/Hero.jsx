@@ -33,11 +33,11 @@ const Hero = ({
   defaultContent
 }) => {
 
-  const { content, variate } = useVariate('HomeHero', defaultContent);
+  const { variables, variate } = useVariate('HomeHero', defaultContent);
 
   return (
-    <Container backgroundImage={content.backgroundImage}>
-      <Title>{content.headline}</Title>
+    <Container backgroundImage={variables.backgroundImage}>
+      <Title>{variables.headline}</Title>
       <Link onClick={e => {
         e.preventDefault();
         variate.track('Conversion');
