@@ -25,6 +25,12 @@
                 "attributes": {
                   "headline": "The A/B testing tool for the modern web"
                 }
+              },
+              "HomePage": {
+                "id": 2,
+                "attributes": {
+                  "title": "working 2"
+                }
               }
             }
           },

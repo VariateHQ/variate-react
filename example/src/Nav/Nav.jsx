@@ -3,17 +3,11 @@ import styled from 'styled-components';
 import { VariateComponent } from '@variate/react';
 import { Link } from 'react-router-dom';
 
-const NavLogo = styled(Link)`
+const NavLogo = styled(Link)``;
 
-`;
+const NavLinks = styled.div``;
 
-const NavLinks = styled.div`
-
-`;
-
-const NavLink = styled(Link)`
-
-`;
+const NavLink = styled(Link)``;
 
 const NavContainer = styled.nav`
   display: flex;
@@ -24,22 +18,22 @@ const NavContainer = styled.nav`
 
 const Nav = ({ content }) => (
   <VariateComponent componentName="Nav" defaultContent={content}>
-  {({ content }) => (
-    <NavContainer { ...content }>
-      <NavLogo to="/">{content.title}</NavLogo>
-      <NavLinks>
-        <NavLink to="/about">About</NavLink>
-      </NavLinks>
-    </NavContainer>
-  )}
+    {({ variables }) => (
+      <NavContainer {...variables}>
+        <NavLogo to="/">{variables.title}</NavLogo>
+        <NavLinks>
+          <NavLink to="/about">About</NavLink>
+        </NavLinks>
+      </NavContainer>
+    )}
   </VariateComponent>
-)
+);
 
 Nav.defaultProps = {
   content: {
     title: 'No Experiment',
-    backgroundColor: '#ccc'
-  }
-}
+    backgroundColor: '#ccc',
+  },
+};
 
 export default Nav;

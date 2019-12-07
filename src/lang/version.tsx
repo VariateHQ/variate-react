@@ -1,8 +1,7 @@
 import { name, styles } from '../config/console';
+import { version } from '../../package.json';
 
-export const show = (): void =>
-  console.log(
-    `%c ${name} %c __VERSION__ `,
-    styles.brand,
-    styles.type
-  );
+const verison = (): void =>
+  console.log(`%c ${name} %c ${version} `, styles.brand, styles.type);
+
+export default verison;

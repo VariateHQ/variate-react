@@ -36,8 +36,8 @@ describe('useVariate', () => {
 
     const TestingComponent = () : void => {
       // @ts-ignore: An argument for 'useVariate' was not provided
-      const { content, variate } = useVariate();
-      mockTestingChildren({ content, variate });
+      const { variables, variate } = useVariate();
+      mockTestingChildren({ variables, variate });
       return null;
     }
 
@@ -52,17 +52,17 @@ describe('useVariate', () => {
     const mockTestingChildren = jest.fn();
 
     const TestingComponent = () : void => {
-      const { content, variate } = useVariate('TestingComponent', {
+      const { variables, variate } = useVariate('TestingComponent', {
         testing: 'testing'
       });
-      mockTestingChildren({ content, variate });
+      mockTestingChildren({ variables, variate });
       return null;
     }
 
     mount(TestSetup(TestingComponent));
 
     expect(mockTestingChildren.mock.calls[0][0]).toMatchObject({
-      content: {
+      variables: {
         testing: 'testing'
       }
     });
@@ -83,18 +83,18 @@ describe('useVariate', () => {
     };
 
     const TestingComponent = () : void => {
-      const { content, variate } = useVariate('TestingComponent', {
+      const { variables, variate } = useVariate('TestingComponent', {
         testing: 'testing',
         somethingElse: 'testing'
       });
-      mockTestingChildren({ content, variate });
+      mockTestingChildren({ variables, variate });
       return null;
     };
 
     mount(TestSetup(TestingComponent));
 
     expect(mockTestingChildren.mock.calls[0][0]).toMatchObject({
-      content: {
+      variables: {
         title: 'experiment testing',
         description: 'experiment testing',
         somethingElse: 'testing'

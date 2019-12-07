@@ -26,10 +26,11 @@ type ExperimentType = {
 }
 
 interface ComponentReturnInterface {
-  content: object,
-  variate: object 
   componentName: string,
-  experiments: Array<ExperimentType>
+  experiments: Array<ExperimentType>,
+  track(args: object): void
+  variables: object,
+  variate: object,
 }
 
 type StylesType = {

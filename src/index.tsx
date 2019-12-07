@@ -2,14 +2,19 @@ import React, { createContext, Component } from 'react';
 import Variate from '@variate/engine';
 import { logVariateComponent } from './utils';
 import { INVALID_COMPONENT_NAME } from './lang/warn';
+import version from './lang/version';
 
-export const VariateContext = createContext({ 
-  variate: null 
+export const VariateContext = createContext({
+  variate: null,
 });
 
-export class VariateProvider extends Component<ProviderPropsType, ProviderStateType> {
+export class VariateProvider extends Component<
+  ProviderPropsType,
+  ProviderStateType
+> {
   constructor(props: ProviderPropsType) {
     super(props);
+    props.debug && version();
     const variate = new Variate(this.props);
     this.state = { variate };
   }
@@ -17,11 +22,12 @@ export class VariateProvider extends Component<ProviderPropsType, ProviderStateT
   componentDidMount() {
     const { onViewChange } = this.props;
     const { variate } = this.state;
-    onViewChange && onViewChange((audience: object) => {
-      variate.initialize(audience, () => {
-        this.setState({ variate });
+    onViewChange &&
+      onViewChange((audience: object) => {
+        variate.initialize(audience, () => {
+          this.setState({ variate });
+        });
       });
-    });
   }
 
   render() {
@@ -29,7 +35,7 @@ export class VariateProvider extends Component<ProviderPropsType, ProviderStateT
     const { children } = this.props;
     return (
       <VariateContext.Provider value={{ variate }}>
-        { typeof children === 'function' ? children({ variate }) : children }
+        {typeof children === 'function' ? children({ variate }) : children}
       </VariateContext.Provider>
     );
   }
@@ -38,35 +44,56 @@ export class VariateProvider extends Component<ProviderPropsType, ProviderStateT
 export const VariateComponent = ({
   children,
   componentName,
-  defaultContent
+  defaultContent,
 }: VariateComponentProps) => (
   <VariateContext.Consumer>
     {({ variate }) => {
       typeof componentName !== 'string' && console.warn(INVALID_COMPONENT_NAME);
       const components = variate.components || {};
       const variateComponent = components[componentName] || {};
-      const experiments = variateComponent.experiments || {}; 
+      const experiments = variateComponent.experiments || {};
       const attributes = variateComponent.attributes || {};
-      const content = { ...defaultContent, ...attributes };
-      variate && variate.__options && variate._options.debug && logVariateComponent(experiments, componentName);
-      const props: ComponentReturnInterface = { componentName, content, variate, experiments };
+      const variables = { ...defaultContent, ...attributes };
+      variate &&
+        variate.__options &&
+        variate._options.debug &&
+        logVariateComponent(experiments, componentName);
+      const props: ComponentReturnInterface = {
+        componentName,
+        experiments,
+        variables,
+        variate,
+        track: variate.track,
+      };
       return children(props);
     }}
   </VariateContext.Consumer>
 );
 
 VariateComponent.defaultProps = {
-  defaultContent: {}
-}
+  defaultContent: {},
+};
 
-export const useVariate = (componentName: string, defaultContent: object = {}): ComponentReturnInterface => {
+export const useVariate = (
+  componentName: string,
+  defaultContent: object = {},
+): ComponentReturnInterface => {
   const { variate } = React.useContext(VariateContext);
   typeof componentName !== 'string' && console.warn(INVALID_COMPONENT_NAME);
   const components = variate.components || {};
   const variateComponent = components[componentName] || {};
-  const experiments = variateComponent.experiments || {}; 
+  const experiments = variateComponent.experiments || {};
   const attributes = variateComponent.attributes || {};
-  const content = { ...defaultContent, ...attributes };
-  variate && variate.__options && variate._options.debug && logVariateComponent(experiments, componentName);
-  return { content, variate, componentName, experiments };
+  const variables = { ...defaultContent, ...attributes };
+  variate &&
+    variate.__options &&
+    variate._options.debug &&
+    logVariateComponent(experiments, componentName);
+  return {
+    componentName,
+    experiments,
+    variables,
+    variate,
+    track: variate.track,
+  };
 };
