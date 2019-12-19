@@ -33,7 +33,7 @@ const Hero = ({
   defaultContent
 }) => {
 
-  const { variables, variate } = useVariate('HomeHero', defaultContent);
+  const { variables, variate } = useVariate('Hero', defaultContent);
 
   return (
     <Container backgroundImage={variables.backgroundImage}>

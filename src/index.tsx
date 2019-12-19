@@ -72,13 +72,13 @@ export const VariateComponent = ({
       const components = variate.components || {};
       const variateComponent = components[componentName] || {};
       const experiments = variateComponent.experiments || {};
-      const attributes = variateComponent.attributes || {};
-      const variables = { ...defaultContent, ...attributes };
+      const variables = { ...defaultContent, ...variateComponent.variables };
       variate &&
         variate.__options &&
         variate._options.debug &&
-        logVariateComponent(experiments, componentName);
+        logVariateComponent(experiments, componentName, variateComponent);
       const props: ComponentReturnType = {
+        bucket: variateComponent.bucket,
         componentName,
         experiments,
         variables,
@@ -103,13 +103,13 @@ export const useVariate = (
   const components = variate.components || {};
   const variateComponent = components[componentName] || {};
   const experiments = variateComponent.experiments || {};
-  const attributes = variateComponent.attributes || {};
-  const variables = { ...defaultContent, ...attributes };
+  const variables = { ...defaultContent, ...variateComponent.variables };
   variate &&
     variate.__options &&
     variate._options.debug &&
-    logVariateComponent(experiments, componentName);
+    logVariateComponent(experiments, componentName, variateComponent);
   return {
+    bucket: variateComponent.bucket,
     componentName,
     experiments,
     variables,

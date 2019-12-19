@@ -27,9 +27,10 @@ type ExperimentType = {
 }
 
 type ComponentReturnType = {
+  bucket: number,
   componentName: string
   experiments: Array<ExperimentType>
-  track(args: object): void
+  track(args: any): boolean
   variables: object
   variate: object
 }

@@ -23,9 +23,21 @@ const App = () => (
     reporter={event => true}
     config={variateConfig}
     onViewChange={activate => {
-      activate({ view: window.location.pathName });
-      history.listen(location => activate({ 
-        view: location.pathName
+      activate({
+        view: {
+          path: window.location.pathname,
+          query: {},
+        },
+        targeting: {
+          country: 'Canada',
+          state: 'BC'
+        }
+      });
+      history.listen(location => activate({
+        view: {
+          path: location.pathName,
+          query: {},
+        }
       }));
     }}>
     <Container>
