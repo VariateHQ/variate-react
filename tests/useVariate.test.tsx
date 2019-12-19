@@ -75,7 +75,7 @@ describe('useVariate', () => {
 
     Variate.prototype.components = {
       TestingComponent: {
-        attributes: {
+        variables: {
           title: 'experiment testing',
           description: 'experiment testing'
         }

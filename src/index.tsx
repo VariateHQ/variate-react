@@ -16,18 +16,33 @@ export class VariateProvider extends Component<
     super(props);
     props.debug && version();
     const variate = new Variate(this.props);
-    this.state = { variate };
+    this.state = {
+      variate,
+      segments: {},
+    };
+    this.activate = this.activate.bind(this);
   }
 
   componentDidMount() {
     const { onViewChange } = this.props;
     const { variate } = this.state;
     onViewChange &&
-      onViewChange((audience: object) => {
-        variate.initialize(audience, () => {
+      onViewChange((segments: object) => {
+        variate.initialize(segments, () => {
           this.setState({ variate });
         });
       });
+  }
+
+  activate(newSegments: object) {
+    const { segments, variate } = this.state;
+    if (JSON.stringify(newSegments) !== JSON.stringify(segments)) {
+      setTimeout(() => {
+        variate.initialize(newSegments, () => {
+          this.setState({ segments: newSegments });
+        });
+      }, 0);
+    }
   }
 
   render() {
@@ -35,7 +50,12 @@ export class VariateProvider extends Component<
     const { children } = this.props;
     return (
       <VariateContext.Provider value={{ variate }}>
-        {typeof children === 'function' ? children({ variate }) : children}
+        {typeof children === 'function'
+          ? children({
+            activate: this.activate,
+            track: variate.track,
+            variate,
+          }) : children}
       </VariateContext.Provider>
     );
   }
@@ -52,13 +72,13 @@ export const VariateComponent = ({
       const components = variate.components || {};
       const variateComponent = components[componentName] || {};
       const experiments = variateComponent.experiments || {};
-      const attributes = variateComponent.attributes || {};
-      const variables = { ...defaultContent, ...attributes };
+      const variables = { ...defaultContent, ...variateComponent.variables };
       variate &&
         variate.__options &&
         variate._options.debug &&
-        logVariateComponent(experiments, componentName);
-      const props: ComponentReturnInterface = {
+        logVariateComponent(experiments, componentName, variateComponent);
+      const props: ComponentReturnType = {
+        bucket: variateComponent.bucket,
         componentName,
         experiments,
         variables,
@@ -77,19 +97,19 @@ VariateComponent.defaultProps = {
 export const useVariate = (
   componentName: string,
   defaultContent: object = {},
-): ComponentReturnInterface => {
+): ComponentReturnType => {
   const { variate } = React.useContext(VariateContext);
   typeof componentName !== 'string' && console.warn(INVALID_COMPONENT_NAME);
   const components = variate.components || {};
   const variateComponent = components[componentName] || {};
   const experiments = variateComponent.experiments || {};
-  const attributes = variateComponent.attributes || {};
-  const variables = { ...defaultContent, ...attributes };
+  const variables = { ...defaultContent, ...variateComponent.variables };
   variate &&
     variate.__options &&
     variate._options.debug &&
-    logVariateComponent(experiments, componentName);
+    logVariateComponent(experiments, componentName, variateComponent);
   return {
+    bucket: variateComponent.bucket,
     componentName,
     experiments,
     variables,
