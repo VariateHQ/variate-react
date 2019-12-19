@@ -63,7 +63,7 @@ describe('VariateComponent', () => {
   it('should return the experiment content when there is an experiment running', () => {
     Variate.prototype.components = {
       testingComponent: {
-        attributes: {
+        variables: {
           title: 'experiment testing',
           description: 'experiment testing'
         }
