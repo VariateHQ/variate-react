@@ -6,11 +6,10 @@
   "author": "Thomas Davis <tomjdavis27@gmail.com>",
   "main": "./dist/variate-react.min.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "lint": "eslint ./src --ext .ts,.tsx,.jsx,.js",
     "start": "webpack-dev-server --mode development --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "prepublishOnly": "yarn run lint && yarn run test && yarn run build",
     "release": "standard-version"
   },
   "files": [
