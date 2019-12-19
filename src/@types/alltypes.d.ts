@@ -2,6 +2,7 @@ declare module '@variate/engine';
 
 type ProviderStateType = {
   variate: any
+  segments: object
 }
 
 type ProviderPropsType = {
@@ -18,25 +19,31 @@ type VariateComponentProps = {
   defaultContent?: object
 }
 
+type VariateComponentType = {
+  siteId: string,
+  experimentId: string
+}
+
 type ExperimentType = {
-  attributes: object,
-  bucket: number,
-  experiment: number,
+  attributes: object
+  bucket: number
+  experiment: number
   variation: number
 }
 
-interface ComponentReturnInterface {
-  componentName: string,
-  experiments: Array<ExperimentType>,
-  track(args: object): void
-  variables: object,
-  variate: object,
+type ComponentReturnType = {
+  bucket: number,
+  componentName: string
+  experiments: Array<ExperimentType>
+  track(args: any): boolean
+  variables: object
+  variate: object
 }
 
 type StylesType = {
-  brand: string,
-  error: string, 
-  warning: string, 
-  type: string, 
+  brand: string
+  error: string 
+  warning: string 
+  type: string 
   message: string
 }
