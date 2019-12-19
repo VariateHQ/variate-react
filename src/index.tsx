@@ -38,7 +38,7 @@ export class VariateProvider extends Component<
     const { segments, variate } = this.state;
     if (JSON.stringify(newSegments) !== JSON.stringify(segments)) {
       setTimeout(() => {
-        variate.initialize(segments, () => {
+        variate.initialize(newSegments, () => {
           this.setState({ segments: newSegments });
         });
       }, 0);
