@@ -52,11 +52,10 @@ export class VariateProvider extends Component<
       <VariateContext.Provider value={{ variate }}>
         {typeof children === 'function'
           ? children({
-              activate: this.activate,
-              track: variate.track,
-              variate,
-            })
-          : children}
+            activate: this.activate,
+            track: variate.track,
+            variate,
+          }) : children}
       </VariateContext.Provider>
     );
   }
