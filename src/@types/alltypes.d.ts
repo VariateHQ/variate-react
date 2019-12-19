@@ -2,7 +2,7 @@ declare module '@variate/engine';
 
 type ProviderStateType = {
   variate: any
-  audience: object
+  segments: object
 }
 
 type ProviderPropsType = {

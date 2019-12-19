@@ -18,7 +18,7 @@ export class VariateProvider extends Component<
     const variate = new Variate(this.props);
     this.state = {
       variate,
-      audience: {},
+      segments: {},
     };
     this.activate = this.activate.bind(this);
   }
@@ -27,19 +27,19 @@ export class VariateProvider extends Component<
     const { onViewChange } = this.props;
     const { variate } = this.state;
     onViewChange &&
-      onViewChange((audience: object) => {
-        variate.initialize(audience, () => {
+      onViewChange((segments: object) => {
+        variate.initialize(segments, () => {
           this.setState({ variate });
         });
       });
   }
 
-  activate(target: object) {
-    const { audience, variate } = this.state;
-    if (JSON.stringify(target) !== JSON.stringify(audience)) {
+  activate(newSegments: object) {
+    const { segments, variate } = this.state;
+    if (JSON.stringify(newSegments) !== JSON.stringify(segments)) {
       setTimeout(() => {
-        variate.initialize(audience, () => {
-          this.setState({ audience: target });
+        variate.initialize(segments, () => {
+          this.setState({ segments: newSegments });
         });
       }, 0);
     }
