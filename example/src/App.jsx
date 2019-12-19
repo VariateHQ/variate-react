@@ -28,13 +28,13 @@ const App = () => (
         view: location.pathName
       }));
     }}>
-      <Container>
-        <Router history={history}>
-          <Nav />
-          <Route exact path='/' render={() => <HomePage/>} />
-          <Route exact path='/about' render={AboutPage} />
-        </Router>
-      </Container>
+    <Container>
+      <Router history={history}>
+        <Nav />
+        <Route exact path='/' render={() => <HomePage/>} />
+        <Route exact path='/about' render={AboutPage} />
+      </Router>
+    </Container>
   </VariateProvider>
 );
 

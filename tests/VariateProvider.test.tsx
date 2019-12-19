@@ -63,7 +63,7 @@ describe('VariateProvider', () => {
     expect(args.debug).toBe(true);
   });
 
-  it('should reinitialize variate with the right audience when activate is called', () => {
+  it('should reinitialize variate with the right audience when activate is called from initialize variate', () => {
     const testAudience = {
       view: 'TestPage',
       targeting: {
@@ -84,6 +84,40 @@ describe('VariateProvider', () => {
     expect(Variate).toHaveBeenCalledTimes(1);
     expect(mockVariateInitialize).toBeCalledTimes(1);
     expect(mockVariateInitialize.mock.calls[0][0]).toMatchObject(testAudience);
+  });
+
+  it('should reinitialize variate with the right audience when activate is called from render prop', async () => {
+    const testAudience = {
+      view: 'TestPage',
+      targeting: {
+        country: 'Canada',
+        state: 'BC',
+      }
+    };
+
+    const wrapper = mount(
+      <VariateProvider 
+        config={{ 
+          testing: 'testing' 
+        }} 
+        debug={true} 
+        tracking={true}
+      >
+        {({ activate }: any) => {
+          activate({ view: '/' });
+          return <p>Test</p>;
+        }}
+      </VariateProvider>
+    );
+
+    wrapper.update();
+
+    setTimeout(() => {
+      expect(Variate).toHaveBeenCalledTimes(1);
+      expect(mockVariateInitialize).toBeCalledTimes(1);
+      expect(mockVariateInitialize.mock.call[0][0]).toMatchObject(testAudience);
+    }, 100);
+    
   });
 
 });

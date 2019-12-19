@@ -62,7 +62,7 @@
     "webpack-dev-server": "^3.1.3"
   },
   "dependencies": {
-    "@variate/engine": "^1.1.0"
+    "@variate/engine": "^2.0.3"
   },
   "config": {
     "commitizen": {
@@ -90,7 +90,7 @@
     "variate"
   ],
   "bugs": {
-    "url": "https://github.com/variateapp/variate-vue/issues"
+    "url": "https://github.com/variateapp/variate-react/issues"
   },
-  "homepage": "https://github.com/variateapp/variate-vue#README.md"
+  "homepage": "https://github.com/variateapp/variate-react#README.md"
 }

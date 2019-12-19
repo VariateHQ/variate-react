@@ -712,10 +712,17 @@
     semver "^6.3.0"
     tsutils "^3.17.1"
 
+<<<<<<< HEAD
 "@variate/engine@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@variate/engine/-/engine-1.1.0.tgz#aa5383fa889f91be4006bfcc2475622f3ed86dc2"
   integrity sha512-/G9DPi/l9s/NshHPX6P6WoUEpgy/uO4T65kjUOwHDfNVbW3yEJ6yscZsE9p3ENZMeSmA4WuuYm6KykiIiq78kA==
+=======
+"@variate/engine@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@variate/engine/-/engine-2.0.3.tgz#c308ee4da66d86e94afddad49f3493ceaa415057"
+  integrity sha512-b9ptxSKV2GnSAqYXDSg/dScyToCIXmujiccz6NLNS/t9rMNGB/kdH+L4TYwN/UHv52938eiVdjWEG6a9qWAM1w==
+>>>>>>> feat(engine): upgrade to latest engine
   dependencies:
     deepmerge "^4.0.0"
     get-value "^3.0.1"
