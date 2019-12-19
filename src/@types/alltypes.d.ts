@@ -19,6 +19,11 @@ type VariateComponentProps = {
   defaultContent?: object
 }
 
+type VariateComponentType = {
+  siteId: string,
+  experimentId: string
+}
+
 type ExperimentType = {
   attributes: object
   bucket: number
