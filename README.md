@@ -1,4 +1,7 @@
-[![npm version](https://badge.fury.io/js/%40variate%2Freact.svg)](https://badge.fury.io/js/%40variate%2Freact)
+![npm (scoped with tag)](https://img.shields.io/npm/v/@variate/react/latest?color=%234EC723)
+![NPM](https://img.shields.io/npm/l/@variate/react)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/VariateApp/variate-react/@variate/engine)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/VariateApp/variate-react/react)
 [![Actions Status](https://github.com/VariateApp/variate-react/workflows/Build/badge.svg)](https://github.com/VariateApp/variate-react/actions)
 [![Actions Status](https://github.com/VariateApp/variate-react/workflows/Publish/badge.svg)](https://github.com/VariateApp/variate-react/actions)
 
