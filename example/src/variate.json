@@ -50,6 +50,7 @@
                           "experimentId": "nM3ntXmMj2dX86xnrvVK",
                           "siteId": "djGYAl2Dx0JDGuAm5mph",
                           "variables": {
+                              "headline": "This is the control",
                               "backgroundImage": "https://placeimg.com/1000/500/animals"
                           }
                       }
