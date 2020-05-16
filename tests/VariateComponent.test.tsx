@@ -15,7 +15,7 @@ describe('VariateComponent', () => {
   let mockRenderProps: any;
   let mockVariateInitialize: any;
   let mockConsoleWarn: any;
-  let mockConsoleDebug: any; 
+  let mockConsoleDebug: any;
 
   beforeEach(() => {
     Variate.mockClear();
@@ -28,25 +28,25 @@ describe('VariateComponent', () => {
 
   it('should log a warning when a invalid component name is passed in props', () => {
     mount(
-      <VariateProvider 
-      config={{ testing: 'testing' }} 
-      debug={true} 
+      <VariateProvider
+      config={{ testing: 'testing' }}
+      debug={true}
       tracking={true}
       >
         // @ts-ignore: An argument for 'useVariate' was not provided
-        <VariateComponent componentName={1} defaultContent={{ title: 'testing' }}>
+        <VariateComponent componentName={'Hero'} defaultContent={{ title: 'testing' }}>
           { mockRenderProps }
         </VariateComponent>
       </VariateProvider>
     );
     expect(mockConsoleWarn.mock.calls[0][0]).toBe(INVALID_COMPONENT_NAME)
   });
-  
+
   it('should return a render prop with the right content when there are no experiments running on the component', () => {
     mount(
-      <VariateProvider 
-        config={{ testing: 'testing' }} 
-        debug={true} 
+      <VariateProvider
+        config={{ testing: 'testing' }}
+        debug={true}
         tracking={true}
       >
         <VariateComponent componentName="testingComponent" defaultContent={{ title: 'testing' }}>
@@ -70,13 +70,13 @@ describe('VariateComponent', () => {
       }
     };
     mount(
-      <VariateProvider 
-        config={{ testing: 'testing' }} 
-        debug={false} 
+      <VariateProvider
+        config={{ testing: 'testing' }}
+        debug={false}
         tracking={true}
       >
-        <VariateComponent 
-          componentName="testingComponent" 
+        <VariateComponent
+          componentName="testingComponent"
           defaultContent={{ title: 'testing', somethingElse: 'testing' }}
         >
           { mockRenderProps }
@@ -85,7 +85,7 @@ describe('VariateComponent', () => {
     );
     expect(mockRenderProps.mock.calls[0][0]).toMatchObject({
       componentName: 'testingComponent',
-      variables: { 
+      variables: {
         title: 'experiment testing',
         description: 'experiment testing',
         somethingElse: 'testing'
