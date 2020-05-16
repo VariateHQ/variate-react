@@ -25,14 +25,14 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 5. Make sure your code lints.
 6. Issue that pull request!
 
-## Report bugs or request features using Github [Issues](https://github.com/VariateApp/variate-react/issues)
+## Report bugs or request features using Github [Issues](https://github.com/VariateHQ/variate-react/issues)
 
 We use GitHub issues to track public bugs. Report a bug by [opening a new issue]().
 
 ## Use a consistent coding style
 
-This repository is using `eslint` to enforce styling convention. Refer to the [`.eslintrc`](https://github.com/VariateApp/variate-react/blob/master/.eslintrc) file for more information.
+This repository is using `eslint` to enforce styling convention. Refer to the [`.eslintrc`](https://github.com/VariateHQ/variate-react/blob/master/.eslintrc) file for more information.
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under its [BSL 1.1 License](https://github.com/VariateApp/variate-react/blob/master/LICENSE).
+By contributing, you agree that your contributions will be licensed under its [BSL 1.1 License](https://github.com/VariateHQ/variate-react/blob/master/LICENSE).
